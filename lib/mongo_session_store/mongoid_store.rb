@@ -16,6 +16,7 @@ module ActionDispatch
         field :data, :type => Moped::BSON::Binary, :default => Moped::BSON::Binary.new(:generic, Marshal.dump({}))
 
         attr_accessible :_id, :data
+        index({created_at:1}, {expire_after_seconds:60*60*24*15})
       end
 
       private
